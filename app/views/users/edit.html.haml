@@ -1,0 +1,11 @@
+%h1 User#edit
+
+= @user.username
+
+= simple_form_for @user do |f|
+
+  = f.input :username
+  = f.input :password
+  = f.file_field :avatar
+
+  = f.submit
