@@ -10,4 +10,8 @@ class User < ActiveRecord::Base
                     path: ":rails_root/public/:class/:attachment/:id/:style_:filename"
 
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
+  def score
+    tipps.sum(:score)
+  end
 end

@@ -44,7 +44,7 @@
         %td= game.score_visitor
       - if tipp_for_game(current_user, game)
         %tr
-          %td{ colspan: 3 } Dein Tipp:
+          %td{ colspan: 3 }= "Dein Tipp: (#{tipp_for_game(current_user, game).score} Punkte)"
         %tr
           %td= tipp_for_game(current_user, game).tipp_home
           %td :

@@ -4,11 +4,7 @@
   %tr
     %th Team home
     %th Team visitor
-    %th Score home
-    %th Score visitor
     %th Start time
-    %th Is over
-    %th
     %th
     %th
 
@@ -16,10 +12,7 @@
     %tr
       %td= game.team_home
       %td= game.team_visitor
-      %td= game.score_home
-      %td= game.score_visitor
       %td= game.start_time
-      %td= game.is_over
       %td= link_to 'Edit', edit_game_path(game)
       %td= link_to 'Destroy', game, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
@@ -31,10 +24,8 @@
   %tr
     %th Team home
     %th Team visitor
-    %th Score home
-    %th Score visitor
+    %th Score
     %th Start time
-    %th Is over
     %th
     %th
     %th
@@ -43,10 +34,18 @@
     %tr
       %td= game.team_home
       %td= game.team_visitor
-      %td= game.score_home
-      %td= game.score_visitor
+      %td= "#{game.score_home} : #{game.score_visitor}"
       %td= game.start_time
-      %td= game.is_over
+      %td
+        - unless game.is_over
+          = simple_form_for game do |f|
+            = f.input :is_over, as: :hidden, input_html: { value: true }
+            = f.input_field :score_home
+            = ":"
+            = f.input_field :score_visitor
+            = f.submit
+
+
       %td= link_to 'Edit', edit_game_path(game)
       %td= link_to 'Destroy', game, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
