@@ -1,0 +1,14 @@
+%h1 Rangliste
+
+%table
+  %tr
+    %td= '#'
+    %td{ colspan: 2 } User
+    %td Punkte
+
+  - @ranked_users.each_with_index do |user, i|
+    %tr{ class: (current_user && current_user == user) ? 'me' : '' }
+      %td= "#{i + 1}"
+      %td= image_tag user.avatar(:square)
+      %td= user.username
+      %td= user.score

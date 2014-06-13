@@ -14,4 +14,8 @@ class User < ActiveRecord::Base
   def score
     tipps.sum(:score)
   end
+
+  def self.ranked
+    User.all.sort_by { |user| user.score }.reverse
+  end
 end

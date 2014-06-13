@@ -5,10 +5,10 @@ Tippomaniac::Application.routes.draw do
 
   root 'welcome#index'
 
-  resources :users, only: [:index, :show]
+  resource :scoreboard, only: :show
 
   authenticated :user do
-    resources :users, except: [:delete, :index, :show]
+    resources :users, except: [:delete, :index]
     resources :tipps, only: [:new, :index, :create]
   end
 

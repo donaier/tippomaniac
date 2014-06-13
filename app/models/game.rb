@@ -3,7 +3,7 @@ class Game < ActiveRecord::Base
 
   after_update :set_tipp_scores
 
-  scope :past, -> { where('start_time < ?', Time.now - 2.hours) }
+  scope :past, -> { where('start_time < ?', Time.now) }
   scope :next, -> { where('start_time > ?', Time.now) }
 
   has_many :tipps

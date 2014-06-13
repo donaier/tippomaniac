@@ -2,57 +2,35 @@
 
 - if current_user
 
-  %h1 Nächste Spiele
-
-  %table
-    - @next_games.each do |game|
-      %tr
-        %td{ colspan: 3 }= game.start_time
-        %td
-      %tr
-        %td= game.team_home
-        %td :
-        %td= game.team_visitor
-        %td
-          - if tipp_for_game(current_user, game)
-            = "tipptopp getippt"
-          - else
-            = link_to 'do tha tipp', new_tipp_path(game: game)
-      - if tipp_for_game(current_user, game)
-        %tr
-          %td{ colspan: 3 } Dein Tipp:
-          %td
-        %tr
-          %td= tipp_for_game(current_user, game).tipp_home
-          %td :
-          %td= tipp_for_game(current_user, game).tipp_visitor
-          %td
-
-  %h1 Abgeschlossene Spiele
-
-  %table
-    - @past_games.each do |game|
-      %tr
-        %td{ colspan: 3 }= game.start_time
-      %tr
-        %td= game.team_home
-        %td :
-        %td= game.team_visitor
-      %tr
-        %td= game.score_home
-        %td :
-        %td= game.score_visitor
-      - if tipp_for_game(current_user, game)
-        %tr
-          %td{ colspan: 3 }= "Dein Tipp: (#{tipp_for_game(current_user, game).score} Punkte)"
-        %tr
-          %td= tipp_for_game(current_user, game).tipp_home
-          %td :
-          %td= tipp_for_game(current_user, game).tipp_visitor
-
+  = link_to 'Rangliste', scoreboard_path
+  = link_to 'Meine Tipps', user_path(current_user)
+  
   = "logged in as: #{current_user.username}"
   = link_to 'logout', destroy_user_session_path, method: :delete
   = link_to 'edit profile', edit_user_path(current_user)
+
+  %table
+    %tr
+      %td{ colspan: 3 }= @next_game.start_time
+      %td
+    %tr
+      %td= @next_game.team_home
+      %td :
+      %td= @next_game.team_visitor
+      %td
+        - if tipp_for_game(current_user, @next_game)
+          = "tipptopp getippt"
+        - else
+          = link_to 'do tha tipp', new_tipp_path(game: @next_game)
+    - if tipp_for_game(current_user, @next_game)
+      %tr
+        %td{ colspan: 3 } Dein Tipp:
+        %td
+      %tr
+        %td= tipp_for_game(current_user, @next_game).tipp_home
+        %td :
+        %td= tipp_for_game(current_user, @next_game).tipp_visitor
+        %td
 
 - else
   = link_to 'login', new_user_session_path

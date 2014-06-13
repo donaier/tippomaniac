@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
 
   def show
-    @user = User.find(params[:id])
+    @user = current_user
+    @next_games = Game.next
+    @past_games = Game.past
   end
 
   def edit
