@@ -1,6 +1,5 @@
 Tippomaniac::Application.routes.draw do
 
-
   devise_for :admins
   devise_for :users
 
@@ -10,6 +9,7 @@ Tippomaniac::Application.routes.draw do
 
   authenticated :user do
     resources :users, except: [:delete, :index, :show]
+    resources :tipps, only: [:new, :index, :create]
   end
 
   authenticated :admin do

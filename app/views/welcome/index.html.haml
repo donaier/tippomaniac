@@ -14,7 +14,8 @@
       %td= game.team_home
       %td= game.team_visitor
       %td= game.start_time
-      %td= link_to 'do tha tipp', '#'
+      %td
+        = link_to 'do tha tipp', new_tipp_path(game: game) if current_user
 
 - if current_user
   = current_user.username

@@ -1,0 +1,22 @@
+%h1 New tipp
+
+
+= simple_form_for @tipp do |f|
+  = f.hidden_field :user_id
+  = f.hidden_field :game_id
+  %table
+    %thead
+      %tr
+        %th{ colspan: 3 }
+          = "Spiel vom #{@tipp.game.start_time}"
+      %tr
+        %th= @tipp.game.team_home
+        %th :
+        %th= @tipp.game.team_visitor
+    %tbody
+      %tr
+        %td= f.input_field :tipp_home
+        %td :
+        %td= f.input_field :tipp_visitor
+  
+  = f.submit 'Save'

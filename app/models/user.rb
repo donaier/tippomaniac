@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable
 
+  has_many :tipps
+
   has_attached_file :avatar, 
                     styles: { square: '256x256#' },
                     default_url: "/users/avatars/:style/missing.png",
