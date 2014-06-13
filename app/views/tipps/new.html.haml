@@ -1,6 +1,3 @@
-%h1 New tipp
-
-
 = simple_form_for @tipp do |f|
   = f.hidden_field :user_id
   = f.hidden_field :game_id
@@ -8,15 +5,15 @@
     %thead
       %tr
         %th{ colspan: 3 }
-          = "Spiel vom #{@tipp.game.start_time}"
+          = @tipp.game.start_time.strftime('%d.%m - %H:%M Uhr')
       %tr
         %th= @tipp.game.team_home
         %th :
         %th= @tipp.game.team_visitor
     %tbody
       %tr
-        %td= f.input_field :tipp_home
+        %td= f.input_field :tipp_home, as: :tel
         %td :
-        %td= f.input_field :tipp_visitor
+        %td= f.input_field :tipp_visitor, as: :tel
   
-  = f.submit 'Save'
+  = f.submit 'Save', class: 'button'
