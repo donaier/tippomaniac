@@ -1,5 +1,21 @@
 %h1 Welcome#index
 
+%h1 Upcoming games
+
+%table
+  %tr
+    %th Team home
+    %th Team visitor
+    %th Start time
+    %th
+
+  - @next_games.each do |game|
+    %tr
+      %td= game.team_home
+      %td= game.team_visitor
+      %td= game.start_time
+      %td= link_to 'do tha tipp', '#'
+
 - if current_user
   = current_user.username
   = link_to 'logout', destroy_user_session_path, method: :delete
