@@ -1,0 +1,21 @@
+%header
+  .slidin-content
+    .slide-in
+      - if current_user
+        .row
+          .columns.large-3.small-6
+            = link_to 'Rangliste', scoreboard_path, class: 'button'
+          .columns.large-3.small-6
+            = link_to 'Meine Tipps', user_path(current_user), class: 'button'
+      
+          .columns.large-3.small-6
+            = link_to 'edit profile', edit_user_path(current_user), class: 'button'
+          .columns.large-3.small-6
+            = link_to 'logout', destroy_user_session_path, method: :delete, class: 'button'
+
+      - if current_admin
+        = current_admin.email
+        = link_to 'logout', destroy_admin_session_path, method: :delete, class: 'button'
+
+    .handle
+      %h1 tippomaniac
