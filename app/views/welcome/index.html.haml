@@ -1,29 +1,24 @@
 .row
-  .columns
+  .columns.large-8.large-centered
     - if current_user
 
-      %table
+      %table.text-center
+        %thead
+          %tr
+            %th Nächstes Spiel
         %tr
-          %td{ colspan: 3 }= @next_game.start_time
-          %td
+          %td= @next_game.start_time.strftime('%d.%m - %H:%M Uhr')
         %tr
-          %td= @next_game.team_home
-          %td :
-          %td= @next_game.team_visitor
-          %td
-            - if tipp_for_game(current_user, @next_game)
-              = "tipptopp getippt"
-            - else
-              = link_to 'do tha tipp', new_tipp_path(game: @next_game)
+          %td= "#{@next_game.team_home} : #{@next_game.team_visitor}"
+            
         - if tipp_for_game(current_user, @next_game)
           %tr
-            %td{ colspan: 3 } Dein Tipp:
-            %td
+            %td Dein Tipp:
           %tr
-            %td= tipp_for_game(current_user, @next_game).tipp_home
-            %td :
-            %td= tipp_for_game(current_user, @next_game).tipp_visitor
-            %td
+            %td= "#{tipp_for_game(current_user, @next_game).tipp_home} : #{tipp_for_game(current_user, @next_game).tipp_visitor}"
+        - else
+          %tr
+            %td= link_to 'Tippen!', new_tipp_path(game: @next_game)
 
     - else
 
