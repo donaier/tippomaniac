@@ -9,3 +9,7 @@
 - else
   = link_to 'login', new_user_session_path
   = link_to 'sign up', new_user_registration_path
+
+- if current_admin
+  = current_admin.email
+  = link_to 'logout', destroy_admin_session_path, method: :delete

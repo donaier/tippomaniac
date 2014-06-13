@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Team home:
+  = @game.team_home
+%p
+  %b Team visitor:
+  = @game.team_visitor
+%p
+  %b Score home:
+  = @game.score_home
+%p
+  %b Score visitor:
+  = @game.score_visitor
+%p
+  %b Start time:
+  = @game.start_time
+%p
+  %b Is over:
+  = @game.is_over
+
+= link_to 'Edit', edit_game_path(@game)
+\|
+= link_to 'Back', games_path

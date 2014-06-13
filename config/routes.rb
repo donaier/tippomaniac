@@ -1,5 +1,7 @@
 Tippomaniac::Application.routes.draw do
 
+
+  devise_for :admins
   devise_for :users
 
   root 'welcome#index'
@@ -8,6 +10,10 @@ Tippomaniac::Application.routes.draw do
 
   authenticated :user do
     resources :users, except: [:delete, :index, :show]
+  end
+
+  authenticated :admin do
+    resources :games, except: [:show]
   end
 
 

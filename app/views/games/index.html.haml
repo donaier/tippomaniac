@@ -1,0 +1,56 @@
+%h1 Upcoming games
+
+%table
+  %tr
+    %th Team home
+    %th Team visitor
+    %th Score home
+    %th Score visitor
+    %th Start time
+    %th Is over
+    %th
+    %th
+    %th
+
+  - @next_games.each do |game|
+    %tr
+      %td= game.team_home
+      %td= game.team_visitor
+      %td= game.score_home
+      %td= game.score_visitor
+      %td= game.start_time
+      %td= game.is_over
+      %td= link_to 'Edit', edit_game_path(game)
+      %td= link_to 'Destroy', game, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+%h1 Past games
+
+%table
+  %tr
+    %th Team home
+    %th Team visitor
+    %th Score home
+    %th Score visitor
+    %th Start time
+    %th Is over
+    %th
+    %th
+    %th
+
+  - @past_games.each do |game|
+    %tr
+      %td= game.team_home
+      %td= game.team_visitor
+      %td= game.score_home
+      %td= game.score_visitor
+      %td= game.start_time
+      %td= game.is_over
+      %td= link_to 'Edit', edit_game_path(game)
+      %td= link_to 'Destroy', game, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+
+= link_to 'New Game', new_game_path
