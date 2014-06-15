@@ -6,20 +6,31 @@
         - @game.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :team_home
-    = f.text_field :team_home
-  .field
-    = f.label :team_visitor
-    = f.text_field :team_visitor
-  .field
-    = f.label :score_home
-    = f.number_field :score_home
-  .field
-    = f.label :score_visitor
-    = f.number_field :score_visitor
-  .field
-    = f.label :start_time
-    = f.datetime_select :start_time
-  .actions
-    = f.submit 'Save'
+  .row
+    .columns.small-2
+      = f.label :team_home
+    .columns.small-10
+      = f.text_field :team_home
+  .row
+    .columns.small-2
+      = f.label :team_visitor
+    .columns.small-10
+      = f.text_field :team_visitor
+  .row
+    .columns.small-2
+      = f.label :score_home
+    .columns.small-10
+      = f.number_field :score_home
+  .row
+    .columns.small-2
+      = f.label :score_visitor
+    .columns.small-10
+      = f.number_field :score_visitor
+  .row
+    .columns.small-2
+      = f.label :start_time
+    .columns.small-10
+      = f.datetime_select :start_time
+  .row
+    .columns
+      = f.submit 'Save', class: 'button'

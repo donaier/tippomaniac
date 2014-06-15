@@ -1,55 +1,46 @@
-%h1 User#show
-
-= @user.username
-= image_tag @user.avatar(:square)
+= image_tag @user.avatar(:square), class: 'avatar-image'
+%p.username= @user.username
 
 %h2 Nächste Spiele
 
-%table
+%table.text-center
   - @next_games.each do |game|
-    %tr
-      %td{ colspan: 3 }= game.start_time
-      %td
-    %tr
-      %td= game.team_home
-      %td :
-      %td= game.team_visitor
-      %td
-        - if tipp_for_game(current_user, game)
-          = "tipptopp getippt"
-        - else
-          = link_to 'do tha tipp', new_tipp_path(game: game)
-    - if tipp_for_game(current_user, game)
+    %thead
       %tr
-        %td{ colspan: 3 } Dein Tipp:
-        %td
+        %th{ colspan: 3 }= game.start_time.strftime('%d.%m - %H:%M Uhr')
+    %tbody
       %tr
-        %td= tipp_for_game(current_user, game).tipp_home
-        %td :
-        %td= tipp_for_game(current_user, game).tipp_visitor
-        %td
+        %td= "#{game.team_home} : #{game.team_visitor}"
+          
+      - if tipp_for_game(current_user, game)
+        %tr
+          %td Dein Tipp:
+        %tr
+          %td= "#{tipp_for_game(current_user, game).tipp_home} : #{tipp_for_game(current_user, game).tipp_visitor}"
+      - else
+        %tr
+          %td= link_to 'Tippen!', new_tipp_path(game: game)
 
 %h2 Abgeschlossene Spiele
 
-%table
+%table.text-center
   - @past_games.each do |game|
-    %tr
-      %td{ colspan: 3 }= game.start_time
-    %tr
-      %td= game.team_home
-      %td :
-      %td= game.team_visitor
-    %tr
-      %td= game.score_home
-      %td :
-      %td= game.score_visitor
-    - if tipp_for_game(current_user, game)
+    %thead
       %tr
-        %td{ colspan: 3 }= "Dein Tipp: (#{tipp_for_game(current_user, game).score} Punkte)"
+        %th{ colspan: 3 }= game.start_time.strftime('%d.%m - %H:%M Uhr')
+    %tbody
       %tr
-        %td= tipp_for_game(current_user, game).tipp_home
+        %td= game.team_home
         %td :
-        %td= tipp_for_game(current_user, game).tipp_visitor
-
-= link_to 'logout', destroy_user_session_path, method: :delete
-= link_to 'edit', edit_user_path(current_user)
+        %td= game.team_visitor
+      %tr
+        %td= game.score_home
+        %td :
+        %td= game.score_visitor
+      - if tipp_for_game(current_user, game)
+        %tr
+          %td{ colspan: 3 }= "Dein Tipp: (#{tipp_for_game(current_user, game).score} Punkte)"
+        %tr
+          %td= tipp_for_game(current_user, game).tipp_home
+          %td :
+          %td= tipp_for_game(current_user, game).tipp_visitor

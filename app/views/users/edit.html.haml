@@ -1,9 +1,8 @@
-%h1 User#edit
-
-= @user.username
+%h1= "edit #{@user.username}'s profile"
 
 = simple_form_for @user do |f|
 
   = f.file_field :avatar
+  = f.hidden_field :username
 
-  = f.submit
+  = f.submit 'update', class: 'button'

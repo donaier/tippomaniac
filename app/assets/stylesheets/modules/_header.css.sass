@@ -19,18 +19,18 @@
     width: 100%
     height: rem-calc(36)
     background-color: $dark
+    position: relative
+    border-bottom: 2px solid $secondary-color
 
     h1
       font-size: rem-calc(24)
 
-    position: relative
-    border-bottom: 2px solid $secondary-color
   
     &:after, &:before
       top: 100%
       left: 90%
       border: solid transparent
-      content: " "
+      content: ""
       height: 0
       width: 0
       position: absolute
@@ -47,3 +47,18 @@
       border-top-color: $secondary-color
       border-width: 18px
       margin-left: -18px
+
+  &.expanded
+    .handle
+      &:after, &:before
+        top: 0px
+
+      &:after
+        border-color: transparent
+        border-bottom-color: $dark
+        top: 6px
+
+      &:before
+        border-color: transparent
+        border-bottom-color: $secondary-color
+

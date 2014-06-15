@@ -2,26 +2,43 @@
   .columns.large-8.large-centered
     - if current_user
 
-      %table.text-center
-        %thead
+      - if @next_game
+        %table.text-center
+          %thead
+            %tr
+              %th Nächstes Spiel
           %tr
-            %th Nächstes Spiel
-        %tr
-          %td= @next_game.start_time.strftime('%d.%m - %H:%M Uhr')
-        %tr
-          %td= "#{@next_game.team_home} : #{@next_game.team_visitor}"
-            
-        - if tipp_for_game(current_user, @next_game)
+            %td= @next_game.start_time.strftime('%d.%m - %H:%M Uhr')
           %tr
-            %td Dein Tipp:
-          %tr
-            %td= "#{tipp_for_game(current_user, @next_game).tipp_home} : #{tipp_for_game(current_user, @next_game).tipp_visitor}"
-        - else
-          %tr
-            %td= link_to 'Tippen!', new_tipp_path(game: @next_game)
+            %td= "#{@next_game.team_home} : #{@next_game.team_visitor}"
+              
+          - if tipp_for_game(current_user, @next_game)
+            %tr
+              %td Dein Tipp:
+            %tr
+              %td= "#{tipp_for_game(current_user, @next_game).tipp_home} : #{tipp_for_game(current_user, @next_game).tipp_visitor}"
+          - else
+            %tr
+              %td= link_to 'Tippen!', new_tipp_path(game: @next_game)
 
     - else
 
       = link_to 'Sign In', new_user_session_path, class: 'button'
       = link_to 'Sign Up', new_user_registration_path, class: 'button'
         
+    %table
+      %thead
+        %tr.text-center
+          %th Info
+
+      %tbody
+        %tr
+          %td
+            %p Tipps sind final und können nicht editiert werden (logischerweise).
+            %p Nach Anpfiff sind keine Tipps mehr möglich.
+            %p 
+              Sieger richtig getippt - 1 Punkt
+              %br
+              Genaue Toranzahl richtig getippt - 3 Punkte
+            %p Funktioniert wahrscheindlich am besten auf dem Iphone/Smartphone.
+            %p versuchs nicht kaputt zu machen. es wird kaputt gehen wenn du's drauf anlegst...

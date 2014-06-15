@@ -4,9 +4,9 @@
       - if current_user
         .row
           .columns.large-3.small-6
-            = link_to 'Rangliste', scoreboard_path, class: 'button'
+            = link_to 'rangliste', scoreboard_path, class: 'button'
           .columns.large-3.small-6
-            = link_to 'Meine Tipps', user_path(current_user), class: 'button'
+            = link_to 'meine tipps', user_path(current_user), class: 'button'
       
           .columns.large-3.small-6
             = link_to 'edit profile', edit_user_path(current_user), class: 'button'
@@ -15,8 +15,8 @@
       - else
         .row
           .columns
-            = link_to 'Sign In', new_user_session_path, class: 'button'
-            = link_to 'Sign Up', new_user_registration_path, class: 'button'
+            = link_to 'anmelden', new_user_session_path, class: 'button'
+            = link_to 'registrieren', new_user_registration_path, class: 'button'
   
 
       - if current_admin
@@ -25,3 +25,4 @@
 
     .handle
       %h1 tippomaniac
+    = link_to '', root_path, class: 'home-link'

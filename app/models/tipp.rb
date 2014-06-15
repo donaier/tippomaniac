@@ -2,6 +2,8 @@ class Tipp < ActiveRecord::Base
   belongs_to :user
   belongs_to :game
 
+  validates_presence_of :tipp_home, :tipp_visitor
+
   def tipped_winner
     if tipp_home > tipp_visitor
       'home'

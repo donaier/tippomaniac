@@ -6,8 +6,35 @@
   border-left: 1px solid $secondary-color
   border-right: 1px solid $secondary-color
 
+.avatar-image
+  width: rem-calc(100)
+  display: inline
+  padding-bottom: rem-calc(30)
+
+.table-avatar
+  width: rem-calc(100)
+
+.username
+  display: inline
+  font-size: rem-calc(22)
+
+.home-link:before
+  content: ''
+  position: absolute
+  left: rem-calc(10)
+  bottom: rem-calc(5)
+  height: rem-calc(25)
+  width: rem-calc(25)
+  background-image: image-url('home_gelb.png')
+  background-size: contain
+  z-index: 20
+
+
 table
   width: 100%
 
   thead tr th
     text-align: center
+
+select
+  width: auto
