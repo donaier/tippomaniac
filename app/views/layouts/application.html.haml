@@ -5,6 +5,12 @@
 
     %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0" }
 
+    %meta{ name: "apple-mobile-web-app-capable", content: "yes" }
+    %meta{ name: "apple-mobile-web-app-status-bar-style", content: "black" }
+
+    %link{ href: "/images/icon.png", rel: "apple-touch-icon" }
+    %link{ rel: 'apple-touch-startup-image', media: '(max-device-width: 480px) and (-webkit-min-device-pixel-ratio : 2)', href: "/images/startup.png" }
+
     %title tippomaniac
 
     = stylesheet_link_tag "application"
