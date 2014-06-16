@@ -1,3 +1,13 @@
-%h1= "edit #{@user.username}'s profile"
+%h1.text-center= "#{@user.username}'s finaltipp:"
 
-nope...
+.row.user-edit
+  .columns.small-8.small-centered
+    %p.text-center (editierbar bis vorrunde vorbei)
+
+    = simple_form_for @user do |f|
+
+      = f.input_field :winnawinna
+      %br
+      %br
+      = f.submit 'die macheds!', class: 'button'
+

@@ -9,7 +9,7 @@
             = link_to 'meine tipps', user_path(current_user), class: 'button'
       
           .columns.large-3.small-6
-            = link_to 'edit profile', edit_user_path(current_user), class: 'button'
+            = link_to 'finaltipp', edit_user_path(current_user), class: 'button'
           .columns.large-3.small-6
             = link_to 'logout', destroy_user_session_path, method: :delete, class: 'button'
       - else
